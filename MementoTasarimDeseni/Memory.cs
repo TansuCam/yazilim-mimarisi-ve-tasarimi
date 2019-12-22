@@ -1,4 +1,3 @@
-```
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,4 +9,3 @@ namespace MementoPattern
         public Memento ProductMemento { get; set; }
     } 
 }
-```
