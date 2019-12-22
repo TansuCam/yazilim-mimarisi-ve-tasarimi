@@ -81,7 +81,31 @@ class Creator
     }
 ```
 
+`Program.cs` sınıfında sistemi sınayalım
+
+```cs
+static void Main(string[] args)
+        {
+            Creator creator = new Creator();
+
+            Reader Word = creator.ReaderFactory(ReaderModel.Word);
+            Reader PDF = creator.ReaderFactory(ReaderModel.PDF);
+            Reader Txt = creator.ReaderFactory(ReaderModel.Txt);
+
+
+            Word.Read();
+            PDF.Read();
+            Txt.Read();
+        }
+```
+
+Üretecekleri çıktılar sırasıyla şöyledir;
+*"Word Dosyası.."*
+*"PDF Dosyası.."*
+*"Txt Dosyası.."*
+
 Bu sistemde yeni bir nesne türünün oluşturulmasına gerek duyulduğunda `Reader`'ı uygulayan ve `Read()` metodunu override eden yeni bir sınıfın oluşturulması, bu türün `enum`'a eklenip `ReaderFactory()`'ye tanıtılması yeterli olacaktır. `ReaderFactory()` ile yeni türlerin eklenmesi veya eskilerinin kaldırılması mümkündür. 
+
 
 ## Memento Tasarım Deseni
 
@@ -181,5 +205,5 @@ static void Main(string[] args)
 ```
 `Program` sınıfı üzerinden sistemi sınayalım.
 
-`prd` nesnesinin ilk verileri "0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )" şeklinde yazdırılacaktır.
-Daha sonra oluşturulan `memory` nesnesi de bu verileri tutacaktır. `prd` nesnesi yeni girilen verilerle tekrar yazdırıldığında ise ekrana "1 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $24,00 )" şeklinde yazdırılacaktır. `prd` üzerinden `Restore()` metodu `memory.ProductMemento` parametresi ile çağırdılığında ilk veriler yeni verilerin üzerine yazdırılacak yani bir geri alma işlemi gerçekleştirilecektir. `prd` nesnenin `ToString()` metodu yazdırıldığında ise oluşacak yeni görünüm şudur; "0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )" yani ilk nesnenin aynısı.
+`prd` nesnesinin ilk verileri *"0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )"* şeklinde yazdırılacaktır.
+Daha sonra oluşturulan `memory` nesnesi de bu verileri tutacaktır. `prd` nesnesi yeni girilen verilerle tekrar yazdırıldığında ise ekrana *"1 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $24,00 )"* şeklinde yazdırılacaktır. `prd` üzerinden `Restore()` metodu `memory.ProductMemento` parametresi ile çağırdılığında ilk veriler yeni verilerin üzerine yazdırılacak yani bir geri alma işlemi gerçekleştirilecektir. `prd` nesnenin `ToString()` metodu yazdırıldığında ise oluşacak yeni görünüm şudur; *"0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )"* yani ilk nesnenin aynısı.
