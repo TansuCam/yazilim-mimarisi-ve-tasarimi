@@ -153,7 +153,7 @@ public void Restore(Memento memento)
 ```
 `ToString()` metodu ise `Product`'a ait verileri ekrana bastırır.
 
-````cs
+```cs
 static void Main(string[] args)
         {
          
