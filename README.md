@@ -152,3 +152,33 @@ public void Restore(Memento memento)
         }
 ```
 `ToString()` metodu ise `Product`'a ait verileri ekrana bastırır.
+
+````cs
+static void Main(string[] args)
+        {
+         
+            Product prd = new Product
+            {
+                ProductId = 0,
+                Name = "Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı",
+                ListPrice = 12
+            };
+            Console.WriteLine(prd.ToString());
+
+                  
+            Memory memory = new Memory();  
+            memory.ProductMemento = prd.Save();
+            Console.WriteLine("Product nesnesi kaydedildi.Değişiklik yapılıyor..");
+
+            prd.ProductId = 1;
+            prd.Name = "Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı";
+            prd.ListPrice = 24;
+            Console.WriteLine("Yeni Kurs Bilgileri : \n\t{0}", prd.ToString());
+ 
+            prd.Restore(memory.ProductMemento);
+            Console.WriteLine("Undo : \n\t{0}", prd.ToString());
+        }
+```
+
+`prd` nesnesinin ilk verileri "0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )" şeklinde yazdırılacaktır.
+Daha sonra oluşturulan `memory` nesnesi de bu verileri tutacaktır. `prd` nesnesi yeni girilen verilerle tekrar yazdırıldığında ise ekrana "1 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $24,00 )" şeklinde yazdırılacaktır. `prd` üzerinden `Restore()` metodu `memory.ProductMemento` parametresi ile çağırdılığında ilk veriler yeni verilerin üzerine yazdırılacak yani bir geri alma işlemi gerçekleştirilecektir. `prd` nesnenin `ToString()` metodu yazdırıldığında ise oluşacak yeni görünüm şudur; "0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )" yani ilk nesnenin aynısı.
