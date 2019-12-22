@@ -100,8 +100,8 @@ static void Main(string[] args)
 ```
 
 Üretecekleri çıktılar sırasıyla şöyledir;
-*"Word Dosyası.."*
-*"PDF Dosyası.."*
+*"Word Dosyası.."* 
+*"PDF Dosyası.."* 
 *"Txt Dosyası.."*
 
 Bu sistemde yeni bir nesne türünün oluşturulmasına gerek duyulduğunda `Reader`'ı uygulayan ve `Read()` metodunu override eden yeni bir sınıfın oluşturulması, bu türün `enum`'a eklenip `ReaderFactory()`'ye tanıtılması yeterli olacaktır. `ReaderFactory()` ile yeni türlerin eklenmesi veya eskilerinin kaldırılması mümkündür. 
