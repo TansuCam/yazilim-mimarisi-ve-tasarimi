@@ -82,3 +82,73 @@ class Creator
 ```
 
 Bu sistemde yeni bir nesne türünün oluşturulmasına gerek duyulduğunda `Reader`'ı uygulayan ve `Read()` metodunu override eden yeni bir sınıfın oluşturulması, bu türün `enum`'a eklenip `ReaderFactory()`'ye tanıtılması yeterli olacaktır. `ReaderFactory()` ile yeni türlerin eklenmesi veya eskilerinin kaldırılması mümkündür. 
+
+## Memento Tasarım Deseni
+
+Memento tasarım deseninde amaç üzerinde değişiklikler yapılan nesnenin geçmiş bilgilerini bir hafızaya kaydetmek ve gerektiğinde geri çağırmaktır. Memento deseninin üç temel bileşeni vardır, bunlar nesnenin hatırlanması istenen bilgilerini tutan Memento, daha sonra geri dönmek üzere Memento'yu yaratan ve geri çağırma işleminden sorumlu olan asıl nesnenin kendisi Originator ve de Memento'ların referanslarını tutan Caretaker'dır. Bir nesnenin eski durumlarının saklanması ve de nesneye geri dönülmesinin istendiği uygulamalarda kullanılır.
+
+![Image of Class](https://github.com/TansuCam/yazilim-mimarisi-ve-tasarimi/blob/master/MementoTasarimDeseni.png)
+
+Bu örnekte Originator rolünü `Product`, Caretaker rolünü ise `Memory` sınıfı oynar. Geriye dönüş işlemi tek bir adımla sınırlıdır. `Memento` sınıfı `Product`'a ait olan tüm verileri tutar. `Product`'a ait, override edilmiş `ToString()` metodu nesnenin `ProductId`, `Name` ve `ListPrice` bilgilerini ekrana bastırır.
+
+```cs
+class Memory
+    {
+        public Memento ProductMemento { get; set; }
+    }
+```
+`Memory` sınıfı tek bir veriye sahiptir, o da `Product`'ın kopyasını tutacak olan `Memento` sınıfından türetilmiş bir nesnedir.
+
+```cs
+class Memento
+    {
+        public int ProductId { get; set; }
+        public string Name { get; set; }
+        public decimal ListPrice { get; set; }
+    }
+```
+`Memento` sınıfı `Product` sınıfı ile özdeştir, aynı verileri tutar.
+
+```cs
+class Product
+    {
+        public int ProductId { get; set; }
+        public string Name { get; set; }
+        public decimal ListPrice { get; set; 
+    }
+```
+`Product`'a ait metodlar ise aşağıdaki gibidir.
+
+```cs
+public Memento Save()
+        {
+            return new Memento
+            {
+                ProductId = this.ProductId
+                ,
+                Name = this.Name
+                ,
+                ListPrice = this.ListPrice
+            };
+        }
+```
+`Save()` metodu `Product`'ın sahip olduğu verilerden yeni bir `Memento` nesnesi oluşturur.
+
+
+```cs
+public void Restore(Memento memento)
+        {
+            this.ListPrice = memento.ListPrice;
+            this.Name = memento.Name;
+            this.ProductId = memento.ProductId;
+        }
+```
+`Restore()` metodu değer döndürmez, aldığı `Memento` nesnesinin verilerini asıl olan `Product` nesnesinin üzerinde yazar.
+
+```cs
+        public override string ToString()
+        {
+            return String.Format("{0} : {1} ( {2} )", ProductId, Name, ListPrice.ToString("C2"));
+        }
+```
+`ToString()` metodu ise `Product`'a ait verileri ekrana bastırır.
