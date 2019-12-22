@@ -179,6 +179,7 @@ static void Main(string[] args)
             Console.WriteLine("Undo : \n\t{0}", prd.ToString());
         }
 ```
+`Program` sınıfı üzerinden sistemi sınayalım.
 
 `prd` nesnesinin ilk verileri "0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )" şeklinde yazdırılacaktır.
 Daha sonra oluşturulan `memory` nesnesi de bu verileri tutacaktır. `prd` nesnesi yeni girilen verilerle tekrar yazdırıldığında ise ekrana "1 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $24,00 )" şeklinde yazdırılacaktır. `prd` üzerinden `Restore()` metodu `memory.ProductMemento` parametresi ile çağırdılığında ilk veriler yeni verilerin üzerine yazdırılacak yani bir geri alma işlemi gerçekleştirilecektir. `prd` nesnenin `ToString()` metodu yazdırıldığında ise oluşacak yeni görünüm şudur; "0 : Yazılım Mimarisi ve Tasarımı Dersi Kurs Fiyatı ( $12,00 )" yani ilk nesnenin aynısı.
