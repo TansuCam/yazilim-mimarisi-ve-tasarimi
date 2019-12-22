@@ -5,7 +5,7 @@ Kullanımı 2 şekilde olabilir. Birinci kullanım şeklinde nesne üretiminden 
 
 ![Image of Class](https://github.com/TansuCam/yazilim-mimarisi-ve-tasarimi/blob/master/FactoryMethodTasarimDeseni.png)
 
-Yukarıdaki diyagramda da görülebildiği gibi Reader abstract class'ının Read metodunu override eden 3 sınıf vardır. Bu sınıflardan yeni nesnelerin oluşturulması için Creator sınıfındaki ReaderFactory metodu kullanılır. ReaderFactory metodu parametre olarak oluşturulacak nesnenin türünü ister. Verilen tipte bir nesne oluşturarak bu yeni nesneyi bir Reader nesnesi olarak geri döndürür. 
+Yukarıdaki diyagramda da görülebildiği gibi `Reader` abstract class'ının Read metodunu override eden 3 sınıf vardır. Bu sınıflardan yeni nesnelerin oluşturulması için `Creator` sınıfındaki `ReaderFactory()` metodu kullanılır. `ReaderFactory()` metodu parametre olarak oluşturulacak nesnenin türünü ister. Verilen tipte bir nesne oluşturarak bu yeni nesneyi bir `Reader` nesnesi olarak geri döndürür. 
 
 ```cs
 public abstract class Reader
@@ -14,7 +14,7 @@ public abstract class Reader
     }
 ```
 
-Reader abstract class'ından oluşturulan nesnelerse aşağıdaki gibidir.
+`Reader` abstract class'ından oluşturulan nesnelerse aşağıdaki gibidir.
 
 ```cs
     public class PDF : Reader
@@ -42,7 +42,7 @@ Reader abstract class'ından oluşturulan nesnelerse aşağıdaki gibidir.
     }
 ```
 
-Tüm bu nesneler birer Reader olarak Creator sınıfının içerisinde türetilir.
+Tüm bu nesneler birer `Reader` olarak `Creator` sınıfının içerisinde türetilir.
 
 ```cs
 class Creator
@@ -70,7 +70,7 @@ class Creator
     }
 ```
 
-ReaderFactory'nin aldığı ReaderModel parametresi de Creator sınıfı içerisinde bir enum olarak tutulur.
+`ReaderFactory()`'nin aldığı `ReaderModel` parametresi de `Creator` sınıfı içerisinde bir `enum` olarak tutulur.
 
 ```cs
     enum ReaderModel
@@ -81,4 +81,4 @@ ReaderFactory'nin aldığı ReaderModel parametresi de Creator sınıfı içeris
     }
 ```
 
-Bu sistemde yeni bir nesne türünün oluşturulmasına gerek duyulduğunda Reader'ı uygulayan ve Read metodunu override eden yeni bir sınıfın oluşturulması, bu türün enum'a eklenip ReaderFactory'ye tanıtılması yeterli olacaktır. ReaderFactory ile yeni türlerin eklenmesi veya eskilerinin kaldırılması mümkündür. 
+Bu sistemde yeni bir nesne türünün oluşturulmasına gerek duyulduğunda `Reader`'ı uygulayan ve `Read()` metodunu override eden yeni bir sınıfın oluşturulması, bu türün `enum`'a eklenip `ReaderFactory()`'ye tanıtılması yeterli olacaktır. `ReaderFactory()` ile yeni türlerin eklenmesi veya eskilerinin kaldırılması mümkündür. 
