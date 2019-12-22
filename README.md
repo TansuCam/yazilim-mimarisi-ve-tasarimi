@@ -4,9 +4,9 @@ Factory Method tasarım deseni aynı abstract sınıfı veya arayüzü uygulayan
 
 ![Image of Class](https://github.com/TansuCam/yazilim-mimarisi-ve-tasarimi/blob/master/FactoryMethodTasarimDeseni.png)
 
-Yukarıdaki diyagramda da görülebildiği gibi Reader abstract class'ının Read metodunu override eden 3 nesne vardır. Bu nesnelerin oluşturulması için Creater sınıfındaki ReaderFactory metodu kullanılır. ReaderFactory metodu parametre olarak oluşturulacak nesnenin türünü ister. Verilen tipte bir nesne oluşturarak bu yeni nesneyi bir Reader nesnesi olarak geri döndürür. 
+Yukarıdaki diyagramda da görülebildiği gibi Reader abstract class'ının Read metodunu override eden 3 sınıf vardır. Bu sınıflardan yeni nesnelerin oluşturulması için Creator sınıfındaki ReaderFactory metodu kullanılır. ReaderFactory metodu parametre olarak oluşturulacak nesnenin türünü ister. Verilen tipte bir nesne oluşturarak bu yeni nesneyi bir Reader nesnesi olarak geri döndürür. 
 
-```csharp
+```cs
 public abstract class Reader
     {
         public abstract void Read();
@@ -15,7 +15,7 @@ public abstract class Reader
 
 Reader abstract class'ından oluşturulan nesnelerse aşağıdaki gibidir.
 
-```csharp```
+```cs
     public class PDF : Reader
     {
         public override void Read()
@@ -41,9 +41,9 @@ Reader abstract class'ından oluşturulan nesnelerse aşağıdaki gibidir.
     }
 ```
 
-Tüm bu nesneler birer Reader olarak Creater sınıfının içerisinde türetilir.
+Tüm bu nesneler birer Reader olarak Creator sınıfının içerisinde türetilir.
 
-```csharp
+```cs
 class Creator
     {
         public Reader ReaderFactory(ReaderModel readerModel)
@@ -69,9 +69,9 @@ class Creator
     }
 ```
 
-ReaderFactory'nin aldığı ReaderModel parametresi de Creater sınıfı içerisinde bir enum olarak tutulur.
+ReaderFactory'nin aldığı ReaderModel parametresi de Creator sınıfı içerisinde bir enum olarak tutulur.
 
-```csharp
+```cs
     enum ReaderModel
     {
         Word,
