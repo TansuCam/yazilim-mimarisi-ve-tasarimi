@@ -81,7 +81,7 @@ class Creator
     }
 ```
 
-`Program.cs` sınıfında sistemi sınayalım
+`Program` sınıfında sistemi sınayalım
 
 ```cs
 static void Main(string[] args)
